@@ -1,0 +1,21 @@
+#!/bin/bash
+source $DIR/functions/do_exit
+source $DIR/functions/color
+source $DIR/functions/successfull
+
+
+
+#https://learn.adafruit.com/adafruit-pitft-3-dot-5-touch-screen-for-raspberry-pi/easy-install-2) for the touchscreen display.
+
+
+echo ""
+echo "Getting Adafruit python script:"
+
+runCmd pip3 install --upgrade adafruit-python-shell click
+runCmd git clone https://github.com/adafruit/Raspberry-Pi-Installer-Scripts.git
+
+
+echo ""
+echo "Running Adafruit setup:"
+
+runCmd python3 Raspberry-Pi-Installer-Scripts/adafruit-pitft.py --display=35r --rotation=90 --install-type=console

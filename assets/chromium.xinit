@@ -1,0 +1,60 @@
+#!/bin/sh
+
+# DEFAULT VARIABLES
+# DO NOT EDIT THESE!!
+# EDIT THESE VARIABLES IN '/etc/default/gregor'
+GREGOR_ARGS=""
+GREGOR_DEBUG=""
+GREGOR_EXTRA='echo "Gregor: screensaver enabled"'
+GREGOR_PORT="80"
+GREGOR_URL="http://localhost:$GREGOR_PORT/"
+GREGOR_EXECUTE="matchbox-window-manager & unclutter -idle 0.1 &"
+TOUCUI_SERVER_TYPE="IPv4"
+CHROME_BIN="chromium-browser"
+AUTODETECT_PORT=true
+CONFIG_DIR=/run/gregor-chromium/
+
+# Uncomment the next variable to generate a full log under ~/.config/chromium/chrome_debug.log
+# or to enable the remote deugger, forward port by haproxy or by tunnel
+#GREGOR_DEBUG="--remote-debugging-port=9222 --enable-logging --v=100"
+
+# Load gregor settings for getting $GREGOR_USER and $FORCE_TOUCH
+[ -r /etc/default/gregor ] && . /etc/default/gregor
+
+mkdir -p $CONFIG_DIR
+chown -R $GREGOR_USER:$GREGOR_USER $CONFIG_DIR
+
+# Remove restore last session after crash in Chrome
+sed -i 's/"exited_cleanly":false/"exited_cleanly":true/' $CONFIG_DIR/Default/Preferences
+sed -i 's/"exit_type":"Crashed"/"exit_type":"None"/' $CONFIG_DIR/Default/Preferences
+# And another one for not minified Preferences (Chrome legacy)
+sed -i 's/"exited_cleanly": false/"exited_cleanly": true/' $CONFIG_DIR/Default/Preferences
+sed -i 's/"exit_type": "Crashed"/"exit_type": "None"/' $CONFIG_DIR/Default/Preferences
+
+# Check if we need to disable the screensaver
+if [ "$DISABLE_SCREENSAVER" = true ]
+then
+	echo "Gregor: screensaver disabled"
+	GREGOR_EXTRA="xset s off & xset -dpms & xset s noblank"
+fi
+
+GREGOR_DIR="/home/$GREGOR_USER/$GREGOR_DIR"
+CHROME_VERSION=$(dpkg -s chromium-browser | grep "Version: " | sed -e 's/Version: //g')
+CHROME_ARGS="	--no-first-run --kiosk $GREGOR_ARGS $GREGOR_DEBUG
+				--dns-prefetch-disable --disable-sync-preferences --disk-cache-size=1 --disk-cache-dir=/dev/null
+				--disable-java --disable-plugins --disable-extensions --disable-infobars
+				--user-agent='Gregor (X11, Chrome $CHROME_VERSION$OCTOPI) (P:$PORT)'
+				--start-maximized --window-position=0,0 --user-data-dir=$CONFIG_DIR
+				$GREGOR_URL"
+
+[ -r $GREGOR_DIR/calibration.sh ] && . $GREGOR_DIR/calibration.sh
+
+# Start local web server to host the startup page to avoid CORS problems using local files
+python $GREGOR_DIR/helpers/server.py \
+	--dir $GREGOR_DIR/bootloader/ \
+	--port $GREGOR_PORT &
+
+# Start window manager, unclutter to remove cursor and start chromium as specific user
+eval $GREGOR_EXTRA &
+eval $GREGOR_EXECUTE &
+su $GREGOR_USER -c "$CHROME_BIN $(echo $CHROME_ARGS|tr -d '\n')"

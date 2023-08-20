@@ -1,0 +1,19 @@
+#!/bin/bash
+source $DIR/functions/successfull
+
+echo ""
+echo "Move gregor.init to '/etc/init.d/gregor':"
+runCmd cp $DIR/assets/gregor.init /etc/init.d/gregor
+successfull $?
+runCmd chmod +x /etc/init.d/gregor
+
+echo ""
+echo "Move gregor.default to '/etc/default/gregor':"
+runCmd cp $DIR/assets/gregor.default /etc/default/gregor
+successfull $?
+
+echo ""
+echo "Register gregor:"
+runCmd update-rc.d gregor defaults
+successfull $?
+runCmd systemctl daemon-reload

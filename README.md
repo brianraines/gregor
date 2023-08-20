@@ -30,7 +30,7 @@ sudo apt-get update -y && sudo apt-get full-upgrade -y
 
 Install some packages:
 ```bash
-sudo apt-get install vim git
+sudo apt-get install vim git -y
 ```
 
 Turn off Paasword auth in ssh config:
@@ -72,4 +72,72 @@ filter = apache-badbots
 sudo service fail2ban restart
 ```
 
-### Install [PCB drivers](https://learn.adafruit.com/adafruit-pitft-3-dot-5-touch-screen-for-raspberry-pi/easy-install-2) for the touchscreen display.
+###
+
+
+### Setup boot to display
+https://pimylifeup.com/raspberry-pi-kiosk/
+https://github.com/jwa-7/goodtft-kioskdmesg
+
+```bash
+sudo apt purge wolfram-engine scratch nuscratch sonic-pi idle3 -y
+sudo apt purge smartsim java-common libreoffice* -y
+
+sudo apt clean
+sudo apt autoremove -y
+
+sudo apt-get update -y && sudo apt-get full-upgrade -y
+
+sudo apt install xdotool unclutter sed -y
+
+sudo apt install xserver-xorg-input-evdev
+sudo cp -rf /usr/share/X11/xorg.conf.d/{10,45}-evdev.confdmesg | grep graphics
+
+sudo raspi-config
+1 System Options -> S5 Boot / Auto Login -> B4 Desktop Autologin
+```
+
+Add the kiosk.sh script to the home directory:
+```bash
+vim kiosk.sh
+```
+
+```bash
+
+
+```
+
+Set the permissions on the script:
+```bash
+chmod u+x ~/kiosk.sh
+```
+
+Create a kiosk.service file:
+```bash
+sudo vim /lib/systemd/system/kiosk.service
+```
+
+```bash
+[Unit]
+Description=Chromium Kiosk
+Wants=graphical.target
+After=graphical.target
+
+[Service]
+Environment=DISPLAY=:0.0
+Environment=XAUTHORITY=/home/brian/.Xauthority
+Type=simple
+ExecStart=/bin/bash /home/brian/kiosk.sh
+Restart=on-abort
+User=brian
+Group=brian
+
+[Install]
+WantedBy=graphical.target
+```
+
+Add and start the service
+```bash
+sudo systemctl enable kiosk.service
+sudo systemctl start kiosk.service
+```

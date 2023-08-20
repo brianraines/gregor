@@ -1,0 +1,68 @@
+#!/bin/bash
+HELP="Usage: [install|uninstall] [options]
+
+Valid options:
+  General options:
+    --debug                  : disable supressing of output
+    -h, --help               : display this usage information
+    -f, --force              : disable exit when a command fails and continue the next step
+    -d, --enable-gldriver    : enable gl-driver beeing set on stretch envoriments
+    -b, --browser <value>    : overwrite which browser needs to be installed
+    -x, --xorg <value>       : overwrite folder of xserver to search for existing config files
+    -s, --skip-sd-check      : skip sd card check
+"
+
+POSITIONAL=()
+while [[ $# -gt 0 ]]
+do
+	key="$1"
+
+	case $key in
+		--debug)
+		DEBUG=true
+		shift # past argument
+		;;
+		-d|--enable-gldriver)
+		ENABLE_GLDRIVER=true
+		shift # past argument
+		;;
+		-f|--force)
+		FORCE=true
+		shift # past argument
+		;;
+		-s|--skip-sd-check)
+		SKIP_SD_CHECK=true
+		shift # past argument
+		;;
+		-b|--browser)
+		BROWSER="$2"
+		shift # past argument
+		shift # past value
+		;;
+		-x|--xorg)
+		XORG_DIR="$2"
+		shift # past argument
+		shift # past value
+		;;
+		-h|--help)
+		echo -e "$HELP"
+		exit 0
+		shift # past argument
+		shift # past value
+		;;
+		*)    # unknown option
+		POSITIONAL+=("$1") # save it in an array for later
+		shift # past argument
+		;;
+	esac
+done
+set -- "${POSITIONAL[@]}"
+
+runCmd() {
+	if [ $DEBUG == true ]
+	then
+		"$@"
+	else
+		"$@" >/dev/null 2>&1
+	fi
+}

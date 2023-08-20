@@ -1,0 +1,11 @@
+#!/bin/bash
+source $DIR/functions/do_exit
+source $DIR/functions/color
+source $DIR/functions/successfull
+
+echo ""
+echo "Setting permissions for /var/www/html:"
+
+runCmd usermod -a -G www-data brian
+runCmd chown -R -f www-data:www-data /var/www/html
+successfull $?
