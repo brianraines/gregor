@@ -1,5 +1,5 @@
 #!/bin/bash
-source $DIR/functions/successfull
+source $DIR/functions/successful
 source $DIR/functions/check_package
 
 [ $(check_package python3-pip) == 0 ] && DEPENDENCIES+=("python3-pip")
@@ -20,7 +20,7 @@ then
 	echo "Running apt-get update (this will take a while)"
 	echo "Do NOT switch off the Pi or close this console until done!"
 	runCmd apt-get update
-	successfull $?
+	successful $?
 
 	echo ""
 	echo "Installing dependencies (${DEPENDENCIES[@]}):"
@@ -33,7 +33,7 @@ then
     runCmd apt clean
     runCmd apt autoremove -y
 
-	successfull $?
+	successful $?
 else
 	echo "Skipping installation of dependencies:"
 	echo " - All dependencies are already installed"

@@ -1,7 +1,7 @@
 #!/bin/bash
 source $DIR/functions/do_exit
 source $DIR/functions/color
-source $DIR/functions/successfull
+source $DIR/functions/successful
 
 echo ""
 echo "Adding PHP 8.2 to dependencies:"
@@ -21,4 +21,4 @@ echo ""
 echo "Restarting Apache:"
 runCmd service apache2 restart
 
-successfull $?
+successful $?

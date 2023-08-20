@@ -13,7 +13,7 @@ SKIP_SD_CHECK=false
 source $DIR/functions/getopts
 
 # Load local functions
-source $DIR/functions/successfull
+source $DIR/functions/successful
 source $DIR/functions/color
 
 # Enforce this helper to be run as root
@@ -65,4 +65,4 @@ echo "$(color 'green' 'Gregor is alive! Go ahead and reboot! Then edit /var/www/
 echo ""
 echo "Launching Gregor:"
 runCmd service gregor start
-successfull $?
+successful $?

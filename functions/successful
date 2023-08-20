@@ -2,7 +2,7 @@
 source $DIR/functions/do_exit
 source $DIR/functions/color
 
-successfull () {
+successful () {
 	if [ $1 -eq 0 ]
 	then
 		echo -e " - $(color 'green' 'success')"

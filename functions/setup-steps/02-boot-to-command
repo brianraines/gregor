@@ -1,10 +1,10 @@
 #!/bin/bash
-source $DIR/functions/successfull
+source $DIR/functions/successful
 
 if [ "$(systemctl get-default)" == "graphical.target" ]
 then
 	echo ""
 	echo "Boot to command line:"
 	runCmd raspi-config nonint do_boot_behaviour B1
-	successfull $?
+	successful $?
 fi

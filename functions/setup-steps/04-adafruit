@@ -1,7 +1,7 @@
 #!/bin/bash
 source $DIR/functions/do_exit
 source $DIR/functions/color
-source $DIR/functions/successfull
+source $DIR/functions/successful
 
 
 

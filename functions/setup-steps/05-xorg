@@ -1,5 +1,5 @@
 #!/bin/bash
-source $DIR/functions/successfull
+source $DIR/functions/successful
 
 # Get active framebuffer, assume the highest is active
 FB="$(ls /dev/ | grep fb | tail -1)"
@@ -24,7 +24,7 @@ then
 		echo '  Driver "fbdev"'                     >> $XORG_DIR/99-fbdev.conf
 		echo "  Option \"fbdev\" \"/dev/$FB\""      >> $XORG_DIR/99-fbdev.conf
 		echo 'EndSection'                           >> $XORG_DIR/99-fbdev.conf
-		successfull $?
+		successful $?
 	else
 		echo "Skipping creation of xserver config file:"
 		echo " - /dev/$FB already configured"

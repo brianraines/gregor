@@ -42,16 +42,17 @@ PasswordAuthentication no
 
 Install firewall:
 ```bash
-sudo apt-get install ufw
+sudo apt-get install ufw -y
 sudo ufw allow 22
 sudo ufw allow 80
 sudo ufw allow 443
 sudo ufw show added
+sudo ufw enable
 ```
 
 Install fail2ban:
 ```bash
-sudo apt-get install fail2ban
+sudo apt-get install fail2ban -y
 sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 sudo vim /etc/fail2ban/jail.local
 
