@@ -72,7 +72,10 @@ filter = apache-badbots
 sudo service fail2ban restart
 ```
 
-###
+### Clone this repo
+```bash
+git clone https://github.com/brianraines/gregor.git
+```
 
 
 ### Setup boot to display
