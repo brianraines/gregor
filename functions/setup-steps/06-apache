@@ -6,6 +6,8 @@ source $DIR/functions/successful
 echo ""
 echo "Setting permissions for /var/www/html:"
 
+runCmd rm -Rf /var/www/html
+runCmd ln -s $DIR/assets/html /var/www/html
 runCmd usermod -a -G www-data brian
 runCmd chown -R -f www-data:www-data /var/www/html
 successful $?
