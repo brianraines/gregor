@@ -5,6 +5,8 @@ source $DIR/functions/check_package
 [ $(check_package python3-pip) == 0 ] && DEPENDENCIES+=("python3-pip")
 [ $(check_package apache2) == 0 ] && DEPENDENCIES+=("apache2")
 [ $(check_package xserver-xorg-input-evdev) == 0 ] && DEPENDENCIES+=("xserver-xorg-input-evdev")
+[ $(check_package xdotool) == 0 ] && DEPENDENCIES+=("xdotool")
+[ $(check_package xdotool) == 0 ] && DEPENDENCIES+=("sed")
 
 [ $(check_package xterm) == 0 ] && DEPENDENCIES+=("xterm")
 [ $(check_package xinit) == 0 ] && DEPENDENCIES+=("xinit")
