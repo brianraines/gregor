@@ -31,8 +31,11 @@ if [ $? -eq 0 ]; then
 	sed -i "s/^.*fbcp.*$/\/usr\/local\/bin\/fbcp \&/g" /etc/rc.local >/dev/null
 else
 	# Insert fbcp into rc.local before final 'exit 0'
-sed -i "s/^exit 0/\/usr\/local\/bin\/fbcp \&\\nexit 0/g" /etc/rc.local >/dev/null
+    sed -i "s/^exit 0/\/usr\/local\/bin\/fbcp \&\\nexit 0/g" /etc/rc.local >/dev/null
 fi
+
+runCmd sh -c "TERM=linux setterm -blank 0 >/dev/tty0"
+runCmd /usr/local/bin/fbcp &
 
 runCmd pip3 install --upgrade adafruit-python-shell click
 runCmd git clone https://github.com/adafruit/Raspberry-Pi-Installer-Scripts.git

@@ -13,7 +13,7 @@ GREGOR_FILE="assets/chromium.xinit"
 GREGOR_PORT="80"
 
 # Touch server host
-GREGOR_URL="http://localhost:$GREGOR_PORT/"
+GREGOR_URL="http://127.0.0.1"
 
 # Command to hide cursor and window-manager before launching chromium
 #GREGOR_EXECUTE=""
