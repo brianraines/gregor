@@ -4,7 +4,7 @@
 # DO NOT EDIT THESE!!
 # EDIT THESE VARIABLES IN '/etc/default/gregor'
 GREGOR_ARGS=""
-GREGOR_DEBUG=""
+GREGOR_DEBUG="true"
 GREGOR_EXTRA='echo "Gregor: screensaver enabled"'
 GREGOR_PORT="80"
 GREGOR_URL="http://localhost:$GREGOR_PORT/"
@@ -47,7 +47,7 @@ CHROME_ARGS="	--no-first-run --kiosk $GREGOR_ARGS $GREGOR_DEBUG
 				--start-maximized --window-position=0,0 --user-data-dir=$CONFIG_DIR
 				$GREGOR_URL"
 
-[ -r $GREGOR_DIR/calibration.sh ] && . $GREGOR_DIR/calibration.sh
+[ -r $GREGOR_DIR/assets/calibration.sh ] && . $GREGOR_DIR/assets/calibration.sh
 
 # Start local web server to host the startup page to avoid CORS problems using local files
 #python $GREGOR_DIR/helpers/server.py \

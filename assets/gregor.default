@@ -4,7 +4,7 @@
 GREGOR_USER=brian
 
 # Where is the xinit file locatated
-GREGOR_DIR="Gregor-autostart"
+GREGOR_DIR="gregor"
 
 # And what xinit file are we looking for
 GREGOR_FILE="assets/chromium.xinit"
@@ -41,7 +41,7 @@ START=yes
 FORCE_TOUCH=false
 
 # Enable or disable the screensaver
-DISABLE_SCREENSAVER=false
+DISABLE_SCREENSAVER=ture
 
 # Autodetect OctoPi port number
 AUTODETECT_PORT=true
