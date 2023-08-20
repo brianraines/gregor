@@ -10,7 +10,7 @@ GREGOR_DIR="Gregor-autostart"
 GREGOR_FILE="assets/chromium.xinit"
 
 # Gregor server port
-GREGOR_PORT="8888"
+GREGOR_PORT="80"
 
 # Touch server host
 GREGOR_URL="http://localhost:$GREGOR_PORT/"

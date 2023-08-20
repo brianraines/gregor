@@ -43,16 +43,16 @@ CHROME_VERSION=$(dpkg -s chromium-browser | grep "Version: " | sed -e 's/Version
 CHROME_ARGS="	--no-first-run --kiosk $GREGOR_ARGS $GREGOR_DEBUG
 				--dns-prefetch-disable --disable-sync-preferences --disk-cache-size=1 --disk-cache-dir=/dev/null
 				--disable-java --disable-plugins --disable-extensions --disable-infobars
-				--user-agent='Gregor (X11, Chrome $CHROME_VERSION$OCTOPI) (P:$PORT)'
+				--user-agent='Gregor (X11, Chrome $CHROME_VERSION) (P:$PORT)'
 				--start-maximized --window-position=0,0 --user-data-dir=$CONFIG_DIR
 				$GREGOR_URL"
 
 [ -r $GREGOR_DIR/calibration.sh ] && . $GREGOR_DIR/calibration.sh
 
 # Start local web server to host the startup page to avoid CORS problems using local files
-python $GREGOR_DIR/helpers/server.py \
-	--dir $GREGOR_DIR/bootloader/ \
-	--port $GREGOR_PORT &
+#python $GREGOR_DIR/helpers/server.py \
+#	--dir $GREGOR_DIR/bootloader/ \
+#	--port $GREGOR_PORT &
 
 # Start window manager, unclutter to remove cursor and start chromium as specific user
 eval $GREGOR_EXTRA &
