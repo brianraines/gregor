@@ -41,21 +41,16 @@ source $DIR/functions/setup-steps/02-boot-to-command
 source $DIR/functions/setup-steps/03-dependencies
 source $DIR/functions/setup-steps/04-adafruit
 source $DIR/functions/setup-steps/05-xorg
-source $DIR/functions/setup-steps/06-chromium
-source $DIR/functions/setup-steps/07-apache
-source $DIR/functions/setup-steps/08-php
-source $DIR/functions/setup-steps/09-gregor
+source $DIR/functions/setup-steps/06-apache
+source $DIR/functions/setup-steps/07-php
+source $DIR/functions/setup-steps/08-gregor
 
 # Legacy Xserver
 # Try to set Xwrapper.config
 sed -i 's/allowed_users=console/allowed_users=anybody/' /etc/X11/Xwrapper.config 3>/dev/null 1>/dev/null 2>/dev/null
 
 # Finally check if chromium-browser is able to run with the kernel
-source $DIR/install-steps/7-check-chromium
-
-# Copy kiosk script
-runCmd cp $DIR/scripts/kiosk.sh ~/kiosk.sh
-runCmd chmod u+x ~/kiosk.sh
+source $DIR/functions/setup-steps/09-chromium
 
 # Show success message
 echo ""

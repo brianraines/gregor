@@ -7,7 +7,7 @@ GREGOR_USER=brian
 GREGOR_DIR="Gregor-autostart"
 
 # And what xinit file are we looking for
-GREGOR_FILE="chromium.xinit"
+GREGOR_FILE="assets/chromium.xinit"
 
 # Gregor server port
 GREGOR_PORT="8888"
