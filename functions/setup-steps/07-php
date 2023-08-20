@@ -2,23 +2,30 @@
 source $DIR/functions/do_exit
 source $DIR/functions/color
 source $DIR/functions/successful
+source $DIR/functions/check_package
 
 echo ""
-echo "Adding PHP 8.2 to dependencies:"
+if [ $(check_package php8.2-common) == 0 ]
+then
+	echo "Adding PHP 8.2 to dependencies:"
 
-runCmd apt install lsb-release
-runCmd wget -qO /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
-echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php.list
+    runCmd apt install lsb-release
+    runCmd wget -qO /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+    echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php.list
 
-runCmd apt update
-runCmd apt install -y php8.2-common php8.2-cli php8.2-curl php8.2-gd php8.2-mbstring php8.2-xml php8.2-zip libapache2-mod-php8.2
+    runCmd apt update
+    runCmd apt install -y php8.2-common php8.2-cli php8.2-curl php8.2-gd php8.2-mbstring php8.2-xml php8.2-zip libapache2-mod-php8.2
 
-echo ""
-echo "Copying index.php:"
-runCmd cp $DIR/assets/index.php /var/www/html/index.php
+    echo ""
+    echo "Copying index.php:"
+    runCmd cp $DIR/assets/index.php /var/www/html/index.php
 
-echo ""
-echo "Restarting Apache:"
-runCmd service apache2 restart
+    echo ""
+    echo "Restarting Apache:"
+    runCmd service apache2 restart
 
-successful $?
+	successful $?
+else
+	echo "Skipping installation of PHP 8.2:"
+	echo " - All dependencies are already installed"
+fi

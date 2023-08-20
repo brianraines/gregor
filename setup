@@ -28,9 +28,12 @@ then
 fi
 
 # Show introduction
-echo -e "$(color 'gregor' ' ╔═╗╔═╗╔═╗╔═╗╔═╗╔═╗ ')"
-echo -e "$(color 'gregor' ' ║ ╦║═╣╠═ ║ ╦║ ║║═╣ ')"
-echo -e "$(color 'gregor' ' ╚═╝╩ ╩╚═╝╚═╝╚═╝╩ ╩ ')"
+echo -e "$(color 'gregor' ' ╔═══╗╔═══╗╔═══╗╔═══╗╔═══╗╔═══╗ ')"
+echo -e "$(color 'gregor' ' ║╔═╗║║╔═╗║║╔══╝║╔═╗║║╔═╗║║╔═╗║ ')"
+echo -e "$(color 'gregor' ' ║║─╚╝║╚═╝║║╚══╗║║─╚╝║║─║║║╚═╝║ ')"
+echo -e "$(color 'gregor' ' ║║╔═╗║╔╗╔╝║╔══╝║║╔═╗║║─║║║╔╗╔╝ ')"
+echo -e "$(color 'gregor' ' ║╚╩═║║║║╚╗║╚══╗║╚╩═║║╚═╝║║║║╚╗ ')"
+echo -e "$(color 'gregor' ' ╚═══╝╚╝╚═╝╚═══╝╚═══╝╚═══╝╚╝╚═╝ ')"
 echo -e "$(color 'gregor' 'Setup helper v0.0.1')"
 [ $FORCE == true ] && echo -e "$(color 'gregor' 'FORCE mode enabled')"
 [ $DEBUG == true ] && echo -e "$(color 'gregor' 'DEBUG mode enabled')"
