@@ -105,5 +105,5 @@ sudo reboot
 
 ### Update HTML dir
 ```bash
-cd assets/html/
+cd ~/gregor/assets/html/
 ```

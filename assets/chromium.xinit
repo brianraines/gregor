@@ -52,11 +52,6 @@ CHROME_ARGS="	--no-first-run --kiosk $GREGOR_ARGS $GREGOR_DEBUG
 
 [ -r $GREGOR_DIR/assets/calibration.sh ] && . $GREGOR_DIR/assets/calibration.sh
 
-# Start local web server to host the startup page to avoid CORS problems using local files
-#python $GREGOR_DIR/helpers/server.py \
-#	--dir $GREGOR_DIR/bootloader/ \
-#	--port $GREGOR_PORT &
-
 # Start window manager, unclutter to remove cursor and start chromium as specific user
 eval $GREGOR_EXTRA &
 eval $GREGOR_EXECUTE &
