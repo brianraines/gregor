@@ -35,7 +35,7 @@ Install some packages:
 sudo apt-get install vim git -y
 ```
 
-Turn off Paasword auth in ssh config:
+Turn off Password auth in ssh config:
 ```bash
 sudo vim /etc/ssh/sshd_config
 
