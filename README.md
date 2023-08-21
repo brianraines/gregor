@@ -30,7 +30,7 @@ Update the system:
 sudo apt-get update -y && sudo apt-get full-upgrade -y
 ```
 
-Install some packages:sudo ufw allow 22
+Install some packages:
 ```bash
 sudo apt-get install vim git -y
 ```
@@ -84,7 +84,6 @@ git clone https://github.com/brianraines/gregor.git
 ```bash
 cd gregor
 sudo chmod 777 setup
-sudo chmod 777 refresh
 sudo ./setup --debug
 ```
 
@@ -106,5 +105,5 @@ sudo reboot
 
 ### Update HTML dir
 ```bash
-sudo ./refresh
+cd assets/html/
 ```

@@ -1,6 +1,0 @@
-#!/bin/bash
-
-service gregor stop
-git reset --hard
-git pull origin master --rebase
-service gregor start

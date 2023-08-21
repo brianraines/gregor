@@ -1,7 +1,11 @@
+body {
+    background-color: #898989;
+}
+
 #container {
-    width: 480px;
-    height: 320px;
-    background-color: #fff;
+    width: 462px;
+    height: 302px;
+    background-color: #FEFEFE;
     position: relative;
     overflow: hidden;
     border: 1px solid #000;
