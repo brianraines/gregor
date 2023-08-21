@@ -13,7 +13,7 @@ A digital desktop calendar project.
 ## Installation
 ### Install Raspberry Pi OS using [Raspberry Pi Imager](https://www.raspberrypi.com/software/).
 
-Use the latest version of [Raspberry Pi OS Lite](https://downloads.raspberrypi.org/raspios_lite_armhf/images/).
+Use the latest version of [Raspberry Pi OS Lite](https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-2023-05-03/#:~:text=%2D-,2023%2D05%2D03%2Draspios%2Dbullseye%2Darmhf%2Dlite.img.xz,-2023%2D05%2D03).
 
 Be sure to enable SSH, WiFi, and a default user in the advanced options. I also set the hostname to `gregor`.
 
@@ -30,7 +30,7 @@ Update the system:
 sudo apt-get update -y && sudo apt-get full-upgrade -y
 ```
 
-Install some packages:
+Install some packages:sudo ufw allow 22
 ```bash
 sudo apt-get install vim git -y
 ```
@@ -86,6 +86,17 @@ cd gregor
 sudo chmod 777 setup
 sudo chmod 777 refresh
 sudo ./setup --debug
+```
+
+### Add X File
+```bash
+sudo vim /usr/share/X11/xorg.conf.d/99-fbdev.conf
+
+Section "Device"
+  Identifier "touchscreen"
+  Driver "fbdev"
+  Option "fbdev" "/dev/fb0"
+EndSection
 ```
 
 ### Reboot

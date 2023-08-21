@@ -1,5 +1,10 @@
 <html>
+    <head>
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
     <body>
-        <?php echo '<p>Hello World</p>'; ?>
+        <div id="container">
+            <?php echo '<p>Hello World</p>'; ?>
+        </div>
     </body>
 </html>

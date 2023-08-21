@@ -28,7 +28,7 @@ then
 
 	echo ""
 	echo "Installing dependencies (${DEPENDENCIES[@]}):"
-	runCmd apt-get install --yes --no-install-recommends ${DEPENDENCIES[@]}
+	runCmd apt-get install --yes ${DEPENDENCIES[@]}
 
     echo ""
 	echo "Removing dependencies:"
