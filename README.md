@@ -107,3 +107,34 @@ sudo reboot
 ```bash
 cd ~/gregor/assets/html/
 ```
+
+Local Development (requires [Docker](https://docs.docker.com/get-docker/)):
+```bash
+docker-compose up -d
+```
+
+Then visit http://localhost:8080
+
+To stop the container:
+```bash
+docker-compose down
+```
+
+OpenWeatherMap API Key:
+```bash
+https://openweathermap.org/
+```
+
+Color Palatte
+#040D38
+#193D61
+#4EBCA1
+#B9D7BD
+#EFE8CB
+
+Moon Phase using
+```bash
+$ cd assets/html/
+$ curl -sS https://getcomposer.org/installer | php
+$ composer require solaris/php-moon-phase
+```

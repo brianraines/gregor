@@ -1,0 +1,7 @@
+{
+    "require": {
+        "solaris/php-moon-phase": "^3.0",
+        "guzzlehttp/guzzle": "^7.8",
+        "cmfcmf/openweathermap-php-api": "^3.3"
+    }
+}

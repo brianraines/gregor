@@ -1,12 +1,77 @@
 body {
-    background-color: #898989;
+    background-color: #040d38;
 }
 
 #container {
     width: 462px;
     height: 302px;
-    background-color: #FEFEFE;
+    background-color: #193d61;
     position: relative;
     overflow: hidden;
-    border: 1px solid #000;
+    border: 1px solid #44617e;
+}
+
+#moon {
+    float: left;
+    width: 60px;
+    height: 61px;
+    margin-left: 10px;
+}
+
+#date {
+    float: left;
+    width: 322px;
+    height: 61px;
+    text-align: center;
+}
+
+#month {
+    font-size: 34pt;
+    color: #4ebca1;
+    font-family: 'Barlow Condensed';
+    text-transform: uppercase;
+}
+
+#day-of-week {
+    font-size: 18pt;
+    color: #b9d7bd;
+    font-family: 'Barlow Condensed';
+    padding-right: 8px;
+}
+
+#day-of-month {
+    font-size: 18pt;
+    color: #b9d7bd;
+    font-family: 'Barlow Condensed';
+    padding-left: 8px;
+}
+
+#weather {
+    float: left;
+    width: 60px;
+    height: 61px;
+    margin-right: 10px;
+    text-align: center;
+    font-size: 9pt;
+    color: #dee1e4;
+    font-family: 'Barlow Condensed';
+}
+
+#time {
+    width: 462px;
+    float: left;
+    text-align: center;
+    font-size: 75pt;
+    color: #dee1e4;
+    font-family: 'Barlow Condensed';
+    margin-top: 40px;
+}
+
+#hours-minutes {
+    margin-right: -15px;
+}
+
+.meridian {
+    font-size: 30pt;
+    color: #b9d7bd;
 }
