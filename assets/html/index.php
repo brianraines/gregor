@@ -21,8 +21,6 @@ $history = json_decode($onthisdayRequest->getBody()->getContents(), true);
 foreach ($history as $key => $events) {
     foreach ($events as $event) {
         unset($event['pages']);
-
-       // $history[$key][] = $event;
     }
 }
 ?>

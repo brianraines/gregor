@@ -44,4 +44,4 @@ runCmd git clone https://github.com/adafruit/Raspberry-Pi-Installer-Scripts.git
 echo ""
 echo "Running Adafruit setup:"
 
-runCmd python3 Raspberry-Pi-Installer-Scripts/adafruit-pitft.py --display=35r --rotation=90 --install-type=console
+runCmd python3 Raspberry-Pi-Installer-Scripts/adafruit-pitft.py --display=35r --rotation=180 --install-type=console
