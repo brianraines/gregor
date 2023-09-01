@@ -138,3 +138,10 @@ $ cd assets/html/
 $ curl -sS https://getcomposer.org/installer | php
 $ composer require solaris/php-moon-phase
 ```
+
+
+turn display on/off
+```bash
+0 8 * * *  export DISPLAY=:0 && xset s off && xset -dpms && xset s noblank
+0 17 * * * export DISPLAY=:0 && xset s activate && xset +dpms
+```

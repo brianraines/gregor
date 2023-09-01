@@ -1,5 +1,7 @@
 body {
     background-color: #040d38;
+    font-family: 'Barlow Condensed';
+    color: #dee1e4;
 }
 
 #container {
@@ -15,7 +17,20 @@ body {
     float: left;
     width: 60px;
     height: 61px;
+    margin-right: 10px;
+}
+
+#weather {
+    float: left;
+    width: 60px;
+    height: 61px;
     margin-left: 10px;
+}
+
+#moon, #weather {
+    text-align: center;
+    font-size: 12pt;
+    color: #dee1e4;
 }
 
 #date {
@@ -28,50 +43,54 @@ body {
 #month {
     font-size: 34pt;
     color: #4ebca1;
-    font-family: 'Barlow Condensed';
     text-transform: uppercase;
 }
 
-#day-of-week {
-    font-size: 18pt;
+#day-of-week, #day-of-month {
+    font-size: 20pt;
     color: #b9d7bd;
-    font-family: 'Barlow Condensed';
+}
+
+#day-of-week {
     padding-right: 8px;
 }
 
 #day-of-month {
-    font-size: 18pt;
-    color: #b9d7bd;
-    font-family: 'Barlow Condensed';
     padding-left: 8px;
-}
-
-#weather {
-    float: left;
-    width: 60px;
-    height: 61px;
-    margin-right: 10px;
-    text-align: center;
-    font-size: 9pt;
-    color: #dee1e4;
-    font-family: 'Barlow Condensed';
 }
 
 #time {
     width: 462px;
     float: left;
     text-align: center;
-    font-size: 75pt;
+    font-size: 82pt;
     color: #dee1e4;
-    font-family: 'Barlow Condensed';
-    margin-top: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 #hours-minutes {
     margin-right: -15px;
+    margin-left: 45px;
 }
 
 .meridian {
     font-size: 30pt;
+    color: #b9d7bd;
+}
+
+#onthisday {
+    padding: 15px;
+}
+
+#onthisday-title {
+    color: #4ebca1;
+}
+
+#onthisday-year {
+    color: #b9d7bd;
+}
+
+#onthisday-event {
     color: #b9d7bd;
 }
