@@ -129,7 +129,16 @@ https://openweathermap.org/
 
 You will need to set the following environment variables:
 ```bash
-export WEATHER_API_KEY=yourapikey
+sudo vim /etc/environment
+```
+adding the following:
+```bash
+WEATHER_API_KEY=yourapikey
+```
+
+You can verify that the environment variables are set by running:
+```bash
+printenv | grep WEATHER_API_KEY
 ```
 
 ### Color Palatte
