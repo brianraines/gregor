@@ -7,41 +7,43 @@ source $DIR/functions/successful
 
 #https://learn.adafruit.com/adafruit-pitft-3-dot-5-touch-screen-for-raspberry-pi/easy-install-2) for the touchscreen display.
 
+if [ "$SKIP_SYS_INSTALL" == false ]
+	then
+        echo ""
+        echo "Getting Adafruit python script:"
 
-echo ""
-echo "Getting Adafruit python script:"
+        runCmd apt --yes install cmake  make gcc g++ libc-dev libraspberrypi-dev
+        cd /tmp
+        curl -LO https://github.com/tasanakorn/rpi-fbcp/archive/master.zip
+        unzip master.zip
+        cd rpi-fbcp-master
+        mkdir build
+        cd build
+        cmake ..
+        make
+        install fbcp /usr/local/bin/fbcp
+        cd ../..
+        rm -rf rpi-fbcp-master
 
-runCmd apt --yes install cmake  make gcc g++ libc-dev libraspberrypi-dev
-cd /tmp
-curl -LO https://github.com/tasanakorn/rpi-fbcp/archive/master.zip
-unzip master.zip
-cd rpi-fbcp-master
-mkdir build
-cd build
-cmake ..
-make
-install fbcp /usr/local/bin/fbcp
-cd ../..
-rm -rf rpi-fbcp-master
+        # Add fbcp to /rc.local:
+        grep fbcp /etc/rc.local >/dev/null
+        if [ $? -eq 0 ]; then
+            # fbcp already in rc.local, but make sure correct:
+            sed -i "s/^.*fbcp.*$/\/usr\/local\/bin\/fbcp \&/g" /etc/rc.local >/dev/null
+        else
+            # Insert fbcp into rc.local before final 'exit 0'
+            sed -i "s/^exit 0/\/usr\/local\/bin\/fbcp \&\\nexit 0/g" /etc/rc.local >/dev/null
+        fi
 
-# Add fbcp to /rc.local:
-grep fbcp /etc/rc.local >/dev/null
-if [ $? -eq 0 ]; then
-	# fbcp already in rc.local, but make sure correct:
-	sed -i "s/^.*fbcp.*$/\/usr\/local\/bin\/fbcp \&/g" /etc/rc.local >/dev/null
-else
-	# Insert fbcp into rc.local before final 'exit 0'
-    sed -i "s/^exit 0/\/usr\/local\/bin\/fbcp \&\\nexit 0/g" /etc/rc.local >/dev/null
+        runCmd sh -c "TERM=linux setterm -blank 0 >/dev/tty0"
+        runCmd /usr/local/bin/fbcp &
+
+        runCmd pip3 install --upgrade adafruit-python-shell click
+        runCmd git clone https://github.com/adafruit/Raspberry-Pi-Installer-Scripts.git
+
+
+        echo ""
+        echo "Running Adafruit setup:"
+
+        runCmd python3 Raspberry-Pi-Installer-Scripts/adafruit-pitft.py --display=35r --rotation=270 --install-type=console
 fi
-
-runCmd sh -c "TERM=linux setterm -blank 0 >/dev/tty0"
-runCmd /usr/local/bin/fbcp &
-
-runCmd pip3 install --upgrade adafruit-python-shell click
-runCmd git clone https://github.com/adafruit/Raspberry-Pi-Installer-Scripts.git
-
-
-echo ""
-echo "Running Adafruit setup:"
-
-runCmd python3 Raspberry-Pi-Installer-Scripts/adafruit-pitft.py --display=35r --rotation=270 --install-type=console

@@ -7,7 +7,7 @@ BROWSER="chromium-browser"
 FORCE=false
 XORG_DIR="/usr/share/X11/xorg.conf.d"
 ENABLE_GLDRIVER=false
-SKIP_SD_CHECK=false
+SKIP_SYS_INSTALL=false
 
 # Get CLI override (e.g. -browser my-browser or --force)
 source $DIR/functions/getopts

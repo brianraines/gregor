@@ -9,7 +9,7 @@ Valid options:
     -d, --enable-gldriver    : enable gl-driver beeing set on stretch envoriments
     -b, --browser <value>    : overwrite which browser needs to be installed
     -x, --xorg <value>       : overwrite folder of xserver to search for existing config files
-    -s, --skip-sd-check      : skip sd card check
+    -s, --skip-sys-install   : skip the system installation items
 "
 
 POSITIONAL=()
@@ -30,8 +30,8 @@ do
 		FORCE=true
 		shift # past argument
 		;;
-		-s|--skip-sd-check)
-		SKIP_SD_CHECK=true
+		-s|--skip-sys-install)
+		SKIP_SYS_INSTALL=true
 		shift # past argument
 		;;
 		-b|--browser)

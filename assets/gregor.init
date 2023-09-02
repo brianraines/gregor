@@ -20,6 +20,7 @@ NAME="Gregor"
 PIDFILE=/var/run/$NAME.pid
 PKGNAME=gregor
 SCRIPTNAME=/etc/init.d/$PKGNAME
+DISPLAY=:0
 
 # XORG needs to run as root to function
 # Bugfix #76
@@ -89,6 +90,9 @@ do_start()
    #   1 if daemon was already running
    #   2 if daemon could not be started
 
+   xset s off && xset -dpms
+   xset s noblank
+
    is_alive $PIDFILE
    RETVAL="$?"
 
@@ -110,6 +114,9 @@ do_stop()
    #   1 if daemon was already stopped
    #   2 if daemon could not be stopped
    #   other if a failure occurred
+
+   xset s activate
+   xset +dpms
 
    start-stop-daemon --stop --quiet --retry=TERM/30/KILL/5 --user $ROOT_USER --pidfile $PIDFILE
    RETVAL="$?"

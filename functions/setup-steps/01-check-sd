@@ -6,7 +6,7 @@ source $DIR/functions/color
 # Check if file system is expanded.
 if [ "$(get_can_expand)" == 1 ]
 then
-	if [ "$SKIP_SD_CHECK" == false ]
+	if [ "$SKIP_SYS_INSTALL" == false ]
 	then
 		echo ""
 		echo -e "$(color 'red' 'Expand your file system before running this helper.')"
