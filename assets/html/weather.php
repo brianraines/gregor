@@ -1,7 +1,7 @@
 <?php
 include_once 'vendor/autoload.php';
 
-$weatherApiKey = "7811916890e3cf69efc2b28022a6c4f3";
+$weatherApiKey = getenv('WEATHER_API_KEY');
 $latitude = "33.078715";
 $longitude = "-96.808306";
 $weatherUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" . $latitude . "&lon=" . $longitude . "&units=imperial&appid=" . $weatherApiKey;

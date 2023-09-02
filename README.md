@@ -83,7 +83,8 @@ git clone https://github.com/brianraines/gregor.git
 ### Run Setup
 ```bash
 cd gregor
-sudo chmod 777 setup
+chmod 777 -Rf scripts/
+cd scripts
 sudo ./setup --debug
 ```
 
@@ -103,6 +104,7 @@ EndSection
 sudo reboot
 ```
 
+## Modifying the Gregor Calendar
 ### Update HTML dir
 ```bash
 cd ~/gregor/assets/html/
@@ -125,23 +127,52 @@ OpenWeatherMap API Key:
 https://openweathermap.org/
 ```
 
-Color Palatte
-#040D38
-#193D61
-#4EBCA1
-#B9D7BD
-#EFE8CB
-
-Moon Phase using
+You will need to set the following environment variables:
 ```bash
-$ cd assets/html/
-$ curl -sS https://getcomposer.org/installer | php
-$ composer require solaris/php-moon-phase
+export WEATHER_API_KEY=yourapikey
 ```
 
+### Color Palatte
+Using [Colour Lovers](https://www.colourlovers.com/palette/2563512/dont_trust_me)
+or [Coolors](https://coolors.co/040d38-193d61-4ebca1-b9d7bd-efe8cb)
 
-turn display on/off
+| Hex     | Color                                |
+|---------|--------------------------------------|
+| #040D38 | $${\textcolor{040D38}{Penn Blue}}$$  |
+| #193D61 | $${\textcolor{193D61}{Indigo dye}}$$ |
+| #4EBCA1 | $${\textcolor{4EBCA1}{Keppel}}$$     |
+| #B9D7BD | $${\textcolor{B9D7BD}{Celadon}}$$    |
+| #EFE8CB | $${\textcolor{EFE8CB}{Parchment}}$$  |
+
+### Design
+You will find a PSD file at `~/gregor/assets/psd/gregor.psd` that you can use to redesign the calendar.
+
+### 3D Printing the Case
+You will find a pair of STL files at `~/gregor/assets/stl/` that you can use to 3D print the `top.stl` and `base.stl` of the case.
+
+#### Thingiverse Model:
+[Raspberry Pi 3(2) OctoPi Case with Touch Screen (OctoTouch)](https://www.thingiverse.com/thing:3103425) design by [ironMANN](https://www.thingiverse.com/ironmann)
+
+## Command Line Interface
+
+To put the display to sleep:
 ```bash
-0 8 * * *  export DISPLAY=:0 && xset s off && xset -dpms && xset s noblank
-0 17 * * * export DISPLAY=:0 && xset s activate && xset +dpms
+~/gregor/scripts/sleep
+```
+
+To wake the display up:
+```bash
+~/gregor/scripts/wake
+```
+
+To refresh chormium (get a fresh weather forecast):
+```bash
+~/gregor/scripts/refresh
+```
+
+To trigger these with cron, add the following to your crontab:
+```bash
+0 8 * * *  /home/yourusername/gregor/scripts/wake
+0 17 * * * /home/yourusername/gregor/scripts/sleep
+0 * * * * /home/yourusername/gregor/scripts/refresh
 ```
